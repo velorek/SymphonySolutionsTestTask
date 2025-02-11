@@ -7,7 +7,7 @@ namespace SymphonySolutions.UI.PageObjects.PageElements
     public class PromoBanner : BasePageElement
     {
         private readonly Logger logger = new(nameof(PrivacyPolicyBanner));
-        private readonly By closeButtonLocator = By.CssSelector("a.close"); // #promoPopup 
+        private readonly By closeButtonLocator = By.CssSelector("a.close");
 
         public PromoBanner(IDriverWraper driverWraper, IWebElement baseElement) : base(driverWraper, baseElement)
         {

@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SymphonySolutions.UI.Helpers;
+﻿using SymphonySolutions.UI.Helpers;
 
 namespace SymphonySolutions.UI.PageObjects
 {

@@ -1,5 +1,4 @@
-﻿using NUnit.Framework.Internal;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SymphonySolutions.Core.Configuration.Interfaces;
 

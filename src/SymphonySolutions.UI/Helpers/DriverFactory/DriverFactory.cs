@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SymphonySolutions.UI.Helpers.BrowserFactory.Managers;
-using NUnit.Framework.Internal;
 using SymphonySolutions.Core.Configuration.Interfaces;
 
 namespace SymphonySolutions.UI.Helpers.BrowserFactory

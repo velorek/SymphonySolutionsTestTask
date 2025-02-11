@@ -11,7 +11,7 @@ jobs:
     name: Run UI tests
     env:
       ENVIRONMENT: "PROD" #DEV, NP, PROD
-      TEST_RESULTS: "test-results"
+      TESTRESULTS: "test-results"
       DOTNET_VERSION: "8.0.x"
 
     steps:
@@ -36,10 +36,10 @@ jobs:
 
       - name: Create directory for test results
         run: |
-          mkdir -p -m 711 -v ${{ env.TEST_RESULTS }}
+          mkdir -p -m 711 -v ${{ env.TESTRESULTS }}
 
       - name: Run the tests
-        run: dotnet test -c ${{ env.ENVIRONMENT }} --no-build --verbosity normal --logger "html;LogFileName=NUnitTestResults.html" --results-directory ${{ env.TEST_RESULTS }}
+        run: dotnet test -c ${{ env.ENVIRONMENT }} --no-build --verbosity normal --logger "html;LogFileName=NUnitTestResults.html" --results-directory ${{ env.TESTRESULTS }}
         continue-on-error: true
 
       - name: Upload artifacts
@@ -47,5 +47,4 @@ jobs:
         with:
           name: TestResults
           path: |
-            ${{ env.TEST_RESULTS }}
-            'allure-results'
+            ${{ env.TESTRESULTS }}

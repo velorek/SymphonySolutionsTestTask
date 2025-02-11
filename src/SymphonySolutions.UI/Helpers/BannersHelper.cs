@@ -37,7 +37,7 @@ namespace SymphonySolutions.UI.Helpers
             logger.Info("> Start updating Local Storage");
             driverWraper.ExecuteJavaScript("localStorage.clear();");
             Thread.Sleep(100);
-            driverWraper.ExecuteJavaScript($"localStorage.setItem('promoPopupShown', 'true')"); // Promo banner
+            driverWraper.ExecuteJavaScript($"localStorage.setItem('promoPopupShown', 'true')");
             logger.Info("> Local storage updated");
 
             Thread.Sleep(300);
@@ -88,7 +88,7 @@ namespace SymphonySolutions.UI.Helpers
 
         public void TryClosePrivacyPolicyBanner()
         {
-            logger.Info("> Try close PrivacyPolicy Banner on UI");
+            logger.Info("> Try to close PrivacyPolicy Banner on UI");
             IWebElement? baseElement = TryGetBaseElementForBanner(privacyPolicyBaseElementLocator);
 
             if(baseElement is not null)
@@ -107,7 +107,7 @@ namespace SymphonySolutions.UI.Helpers
 
         public void TryClosePromoBanner()
         {
-            logger.Info("> Try close Promo Banner ");
+            logger.Info("> Try to close Promo Banner ");
             IWebElement? baseElement = TryGetBaseElementForBanner(promoBaseElementLocator);
             if (baseElement is not null)
             {
@@ -125,12 +125,13 @@ namespace SymphonySolutions.UI.Helpers
 
         private IWebElement? TryGetBaseElementForBanner(By locator)
         {
-            IWebElement? baseElement = null;
+            IWebElement? baseElement;
             try
             {
                 baseElement = driverWraper.FindElement(locator);
                 if (baseElement.Displayed)
                 {
+                    logger.Info(">> Base element for banner was found");
                     return baseElement;
                 }
             }
@@ -144,7 +145,7 @@ namespace SymphonySolutions.UI.Helpers
             }
             catch(WebDriverException ex)
             {
-                logger.Error(">> Exception was throws while trying to gate base element for banner", ex);
+                logger.Error(">> Exception was thrown while trying to get base element for banner", ex);
             }
 
             return null;

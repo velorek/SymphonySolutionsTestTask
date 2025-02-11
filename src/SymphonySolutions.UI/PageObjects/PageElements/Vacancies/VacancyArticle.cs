@@ -17,11 +17,13 @@ namespace SymphonySolutions.UI.PageObjects.PageElements.Vacancies
 
         public string GetVacancyTitle()
         {
+            logger.Info("Get Vacancy article title");
             return baseElement.FindElement(titleLocator).Text;
         }
 
         public VacancyPage ClickOnCheckMoreButton()
         {
+            logger.Info("Click on Check more button");
             baseElement.FindElement(checkMoreButtonLocation).Click();
             return new VacancyPage(driverWraper);
         }

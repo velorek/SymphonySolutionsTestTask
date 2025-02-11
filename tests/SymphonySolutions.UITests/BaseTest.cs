@@ -4,12 +4,9 @@ using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
-using OpenQA.Selenium;
 using SymphonySolutions.Core.Configuration;
 using SymphonySolutions.Core.Helpers;
 using SymphonySolutions.UI.Helpers;
-using SymphonySolutions.UI.PageObjects;
-using SymphonySolutions.UI.PageObjects.PageElements;
 using Logger = SymphonySolutions.Core.Logging.Logger;
 
 namespace SymphonySolutionsUITests
@@ -76,7 +73,7 @@ namespace SymphonySolutionsUITests
 
                 var imagePath = Path.Combine(
                     testResultsFolderPath,
-                    $"Fail_{DateTime.Now.ToShortDateString()}_screenshot.png");
+                    $"Fail_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}_{TestDataHelper.GenerateRandomName()}_screenshot.png");
                 screenshot.SaveAsFile(imagePath);
             }
         }

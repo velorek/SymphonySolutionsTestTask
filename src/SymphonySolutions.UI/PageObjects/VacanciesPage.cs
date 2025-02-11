@@ -29,16 +29,5 @@ namespace SymphonySolutions.UI.PageObjects
         {
             return vacanciesList[position];
         }
-
-        public string GetVacancyTextByPosition(int position)
-        {
-            return
-                driverWraper.FindElements(vacanciesListLocator)[position].FindElement(By.TagName("h3")).Text.Trim();
-        }
-
-        public void clickOnVacancyByPosition(int position)
-        {
-            driverWraper.FindElements(vacanciesListLocator)[position].Click();
-        }
     }
 }

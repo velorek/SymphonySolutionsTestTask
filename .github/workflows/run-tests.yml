@@ -3,6 +3,7 @@ name: Run UI tests
 on:
   push:
     branches: [main]
+  workflow_dispatch
 
 jobs:
   run_test:

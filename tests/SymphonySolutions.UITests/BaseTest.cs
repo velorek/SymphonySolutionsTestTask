@@ -76,7 +76,7 @@ namespace SymphonySolutionsUITests
 
                 var imagePath = Path.Combine(
                     testResultsFolderPath,
-                    $"{driver.Title}_{DateTime.Now.ToShortDateString()}_screenshot.png");
+                    $"Fail_{DateTime.Now.ToShortDateString()}_screenshot.png");
                 screenshot.SaveAsFile(imagePath);
             }
         }

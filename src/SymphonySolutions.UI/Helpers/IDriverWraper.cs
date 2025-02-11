@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 
 namespace SymphonySolutions.UI.Helpers
@@ -10,7 +9,7 @@ namespace SymphonySolutions.UI.Helpers
 
         void QuitWebDriver();
 
-        void ExecuteJsScript(string script);
+        void ExecuteJavaScript(string script);
 
         IWebElement FindElement(By by);
 

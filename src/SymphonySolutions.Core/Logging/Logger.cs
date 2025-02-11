@@ -21,6 +21,8 @@ namespace SymphonySolutions.Core.Logging
         public void Info(string message) => 
             Log.Information(messageTemplate, DateTimeOffset.Now, _name, "INFO", message);
 
+        public void Warn(string message) =>
+            Log.Warning(messageTemplate, DateTimeOffset.Now, _name, "WARN", message);
 
         public void Error(string message, Exception exception) =>
             Log.Error(exception, messageTemplate, DateTimeOffset.Now, _name, "ERROR", message);

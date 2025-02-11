@@ -40,46 +40,23 @@ namespace SymphonySolutionsUITests
 
         [SetUp]
         public void Setup() {
+            logger.Info("Setup starts");
             var driver = driverWraper.GetWebDriverInstance();
 
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Navigate().GoToUrl(settings.BaseHost);
 
-
             var bannerHelper = new BannersHelper(driverWraper);
-            bannerHelper.ClosePrivacyPolicyBanner();
-            bannerHelper.ClosePromoBanner();
+            logger.Info("Start updating local storage and cookies");
+            bannerHelper.UpdateLocalStorageAndCookies();
+            logger.Info("local storage and cookies were updated");
 
-            /*driver.ClearLocalStorageData();
-            driver.AddRecordToLocalStorage("promoPopupShown", "true");
+            driver.Navigate().Refresh();
 
-            var consentCookie = driver.Manage().Cookies.GetCookieNamed("cookieyes-consent");
-            if (consentCookie != null)
-            {
-                driver.Manage().Cookies.DeleteAllCookies();
-
-                var updatedConsentCookieValue = UpdateConsentCookieValue(consentCookie.Value);
-                driver.Manage().Cookies.AddCookie(
-                    new Cookie(
-                        name: consentCookie.Name,
-                        value: updatedConsentCookieValue,
-                        domain: consentCookie.Domain,
-                        path: consentCookie.Path,
-                        expiry: consentCookie.Expiry,
-                        secure: consentCookie.Secure,
-                        isHttpOnly: consentCookie.IsHttpOnly,
-                        sameSite: consentCookie.SameSite));
-            }
-
-            Thread.Sleep(1000);
-            driver.Navigate().Refresh();*/
-        }
-
-        private string UpdateConsentCookieValue(string cookie)
-        {
-            var keyValuePairs = cookie.Split(',').Select(pair => pair.Split(':')).ToDictionary(pair => pair[0], pair => pair[1]);
-            keyValuePairs["action"] = "yes";
-            return string.Join(",", keyValuePairs.Select(kvp => $"{kvp.Key}:{kvp.Value}"));
+            logger.Info("Check and close banners on UI if they still displayed");
+            bannerHelper.TryClosePrivacyPolicyBanner();
+            bannerHelper.TryClosePromoBanner();
+            logger.Info("Setup ends");
         }
 
         [TearDown]

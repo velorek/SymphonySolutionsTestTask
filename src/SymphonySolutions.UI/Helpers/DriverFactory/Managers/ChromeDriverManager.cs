@@ -20,6 +20,7 @@ namespace SymphonySolutions.UI.Helpers.BrowserFactory.Managers
             options.AddArgument("start-maximized");
             options.AddArgument("disable-extensions");
             options.AddExcludedArgument("disable-popup-blocking");
+            options.AddArguments("--incognito");
             if (_settings.IsHeadless)
                 options.AddArgument("--headless");
 

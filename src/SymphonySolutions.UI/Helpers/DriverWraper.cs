@@ -70,18 +70,6 @@ namespace SymphonySolutions.UI.Helpers
             return driver.FindElements(by);
         }
 
-        public void ExecuteJsScript(string script)
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew(); 
-
-            logger.Info($"> start JS script execution '{script}'");
-            var js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript(script);
-
-            stopwatch.Stop();
-            logger.Info($"> JS script execution finished within {stopwatch.Elapsed:mm\\:ss\\.ff}");
-        }
-
         public IWebDriver GetWebDriverInstance() => driver;
 
         public void QuitWebDriver()
@@ -128,6 +116,18 @@ namespace SymphonySolutions.UI.Helpers
         {
             logger.Info($"Perform hover and click on element");
             new Actions(driver).MoveToElement(element).Click().Perform();
+        }
+
+        public void ExecuteJavaScript(string script)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
+            logger.Info($">> start JS script execution '{script}'");
+            var js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript(script);
+
+            stopwatch.Stop();
+            logger.Info($">> JS script execution finished within {stopwatch.Elapsed:mm\\:ss\\.ff}");
         }
     }
 }

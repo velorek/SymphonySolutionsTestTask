@@ -1,0 +1,46 @@
+name: Run UI tests
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    name: Run UI tests
+    env:
+      ENVIRONMENT: "PROD" #DEV, NP, PROD
+      TEST_RESULTS: "test-results"
+      DOTNET_VERSION: "8.0.x"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the project
+        run: dotnet build -c ${{ env.ENVIRONMENT }} --no-restore
+
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+
+      - name: Run the tests
+        run: dotnet test -c ${{ env.ENVIRONMENT }} --no-build --verbosity normal --logger "html;LogFileName=NUnitTestResults.html" --results-directory ${{ env.TEST_RESULTS }}
+        continue-on-error: true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestResults
+          path: |
+            ${{ env.TEST_RESULTS }}
+            'allure-results'

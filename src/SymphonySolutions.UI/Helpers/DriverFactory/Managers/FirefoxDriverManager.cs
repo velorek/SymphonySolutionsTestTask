@@ -16,13 +16,9 @@ namespace SymphonySolutions.UI.Helpers.BrowserFactory.Managers
         public IWebDriver CreateDriver()
         {
             var options = new FirefoxOptions();
-            options.AddArgument("--start-maximized");
-            options.AddArgument("--incognito");
-            options.AddArgument("--disable-extensions");
+            options.AddArgument("start-maximized");
+            options.AddArgument("disable-extensions");
             options.AddArgument("disable-popup-blocking");
-            //options.AddArgument("disable-popup-blocking");
-            //options.AddArgument("disable-infobars");
-            //options.AddArgument("--no-sandbox");
             if (_settings.IsHeadless)
                 options.AddArgument("--headless");
 

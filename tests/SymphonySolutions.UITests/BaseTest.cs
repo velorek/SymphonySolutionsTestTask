@@ -6,6 +6,7 @@ using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using SymphonySolutions.Core.Configuration;
+using SymphonySolutions.Core.Helpers;
 using SymphonySolutions.UI.Helpers;
 using SymphonySolutions.UI.PageObjects;
 using SymphonySolutions.UI.PageObjects.PageElements;
@@ -65,11 +66,18 @@ namespace SymphonySolutionsUITests
             var driver = driverWraper.GetWebDriverInstance();
             driver.Manage().Cookies.DeleteAllCookies();
 
+            var testResultsFolderPath = Path.Combine(DirectoryHelper.TryGetSolutionDirectory(), settings.TestResults);
+
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
             if (testStatus == TestStatus.Failed)
             {
                 var screenshot = driverWraper.TakeScreenshot();
                 AllureApi.AddAttachment("Screenshots", "image/jpeg", screenshot.AsByteArray, "jpeg");
+
+                var imagePath = Path.Combine(
+                    testResultsFolderPath,
+                    $"{driver.Title}_{DateTime.Now.ToShortDateString()}_screenshot.png");
+                screenshot.SaveAsFile(imagePath);
             }
         }
 

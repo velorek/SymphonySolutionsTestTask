@@ -34,6 +34,10 @@ jobs:
       - name: Build the project
         run: dotnet build -c ${{ env.ENVIRONMENT }} --no-restore
 
+      - name: Create directory for test results
+        run: |
+          mkdir -p -m 711 -v ${{ env.TEST_RESULTS }}
+
       - name: Run the tests
         run: dotnet test -c ${{ env.ENVIRONMENT }} --no-build --verbosity normal --logger "html;LogFileName=NUnitTestResults.html" --results-directory ${{ env.TEST_RESULTS }}
         continue-on-error: true

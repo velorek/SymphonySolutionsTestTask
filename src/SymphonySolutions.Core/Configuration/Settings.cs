@@ -16,5 +16,6 @@ public sealed class Settings : IBrowserSettings, IWebDriverSettings, IBaseTestSe
 
     public int MaxRetriesCount { get; set; } = 3;
     public int retriesInitialDelayMs { get; set; } = 200;
+    public string TestResults { get; set; }
 
 }

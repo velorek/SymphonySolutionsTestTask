@@ -4,7 +4,7 @@ using SymphonySolutions.UI.Helpers;
 
 namespace SymphonySolutions.UI.PageObjects.PageElements
 {
-    public class PromoBanner : BasePageElement
+    public sealed class PromoBanner : BasePageElement
     {
         private readonly Logger logger = new(nameof(PrivacyPolicyBanner));
         private readonly By closeButtonLocator = By.CssSelector("a.close");
@@ -15,7 +15,7 @@ namespace SymphonySolutions.UI.PageObjects.PageElements
 
         public void ClickCloseButton()
         {
-            logger.Info($"Click on close button");
+            logger.Info($"Click on Close button");
             baseElement.FindElement(closeButtonLocator).Click();
         }
 

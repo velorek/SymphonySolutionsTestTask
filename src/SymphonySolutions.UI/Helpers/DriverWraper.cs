@@ -37,7 +37,8 @@ namespace SymphonySolutions.UI.Helpers
 
         public IWebElement FindElement(By by)
         {
-            IWebElement element = null;
+            logger.Info(">> Try to find element by locator");
+            IWebElement element;
             var retryCount = 0;
             var maxRetries = driverSettings.MaxRetriesCount;
             var delay = driverSettings.DefaultPollingIntervalMs;
@@ -74,13 +75,13 @@ namespace SymphonySolutions.UI.Helpers
 
         public void QuitWebDriver()
         {
-            logger.Info("Try to stop WebDriver instance");
+            logger.Info(">> Try to stop WebDriver instance");
             if (driver != null)
             {
                 driver.Quit();
                 driver.Dispose();
             }
-            logger.Info("WebDriver stoped");
+            logger.Info(">> WebDriver stoped");
         }
 
         public void WaitUntil(By by, Func<bool> condition, IEnumerable<Type> excludedExceptions)
@@ -102,19 +103,19 @@ namespace SymphonySolutions.UI.Helpers
 
         public Screenshot TakeScreenshot()
         {
-            logger.Info("Take a screenshot");
+            logger.Info(">> Take a screenshot");
             return ((ITakesScreenshot)driver).GetScreenshot();
         }
 
         public void HoverOnElement(IWebElement element)
         {
-            logger.Info($"Perform hover on element");
+            logger.Info($">> Perform hover on element");
             new Actions(driver).MoveToElement(element).Perform();
         }
 
         public void HoverAndClickOnElement(IWebElement element)
         {
-            logger.Info($"Perform hover and click on element");
+            logger.Info($">> Perform hover and click on element");
             new Actions(driver).MoveToElement(element).Click().Perform();
         }
 

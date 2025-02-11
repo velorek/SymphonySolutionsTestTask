@@ -6,7 +6,6 @@ namespace SymphonySolutions.Core.Logging
 {
     public class NUnitSink : ILogEventSink
     {
-
         private readonly IFormatProvider _formatProvider;
 
         public NUnitSink(IFormatProvider formatProvider)
@@ -16,10 +15,7 @@ namespace SymphonySolutions.Core.Logging
 
         public void Emit(LogEvent logEvent)
         {
-            if (logEvent is null)
-            {
-                throw new ArgumentNullException(nameof(logEvent));
-            }
+            ArgumentNullException.ThrowIfNull(logEvent);
 
             if (TestContext.Out != null)
             {

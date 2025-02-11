@@ -2,7 +2,7 @@
 {
     public static  class DirectoryHelper
     {
-        public static string TryGetSolutionDirectory(string currentPath = null)
+        public static string TryGetSolutionDirectory(string? currentPath = null)
         {
             var directory = new DirectoryInfo(
                 currentPath ?? Directory.GetCurrentDirectory());
@@ -10,7 +10,12 @@
             {
                 directory = directory.Parent;
             }
-            return directory.FullName;
+
+            if (directory is not null)
+            {
+                return directory.FullName;
+            }
+            throw new NullReferenceException("directory is null");
         }
     }
 }

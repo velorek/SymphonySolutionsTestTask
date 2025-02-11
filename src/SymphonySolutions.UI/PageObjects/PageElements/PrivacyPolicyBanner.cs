@@ -4,7 +4,7 @@ using SymphonySolutions.UI.Helpers;
 
 namespace SymphonySolutions.UI.PageObjects.PageElements
 {
-    public class PrivacyPolicyBanner : BasePageElement
+    public sealed class PrivacyPolicyBanner : BasePageElement
     {
         private readonly Logger logger = new(nameof(PrivacyPolicyBanner));
         private readonly By rejectButtonLocator = By.CssSelector(".cky-consent-bar button.cky-btn-reject");
@@ -15,7 +15,7 @@ namespace SymphonySolutions.UI.PageObjects.PageElements
 
         public void RejectAllButttonClick()
         {
-            logger.Info($"Click on close button");
+            logger.Info($"Click on Reject All button");
             baseElement.FindElement(rejectButtonLocator).Click();
         }
 

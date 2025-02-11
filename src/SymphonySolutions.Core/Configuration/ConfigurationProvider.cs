@@ -18,11 +18,7 @@ namespace SymphonySolutions.Core.Configuration
                 .AddEnvironmentVariables()
                 .Build();
 
-            if(configuration is null)
-            {
-                throw new ArgumentNullException(nameof(configuration));
-            }
-
+            ArgumentNullException.ThrowIfNull(nameof(configuration));
             var settings = configuration.Get<Settings>() ?? throw new ArgumentNullException("Can't get settings");
 
             return settings;
